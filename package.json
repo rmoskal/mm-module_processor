@@ -1,0 +1,29 @@
+{
+  "name": "module_processor",
+  "version": "1.0.0",
+  "description": "Processes javascript modules recirsively",
+  "main": "./lib.index.js",
+  "scripts": {
+    "test": "mocha --recursive --reporter spec test/**/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/rmoskal/mm-module_processor.git"
+  },
+  "author": "Robert Moskal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rmoskal/mm-module_processor/issues"
+  },
+  "homepage": "https://github.com/rmoskal/mm-module_processor#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
+    "chai-things": "^0.2.0",
+    "sinon": "^1.17.5",
+    "sinon-chai": "^2.8.0"
+  },
+  "dependencies": {
+    "lodash": "^4.14.1"
+  }
+}
