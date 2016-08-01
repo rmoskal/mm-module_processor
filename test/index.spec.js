@@ -1,5 +1,5 @@
 var
-    circl =  require( '../lib/index'),
+    circl =  require( '../index'),
     fs = require( 'fs' ),
     path = require( 'path' ),
     _ = require('lodash');
