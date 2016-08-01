@@ -3,16 +3,16 @@ var path = require('path');
 var _ = require('lodash');
 
 
-function _walks(dir, cb) {
+function _walks(dir, ext, cb) {
     fs.readdirSync(dir).forEach(function (file) {
         if (file == "index.js") return false;
         var stat = fs.statSync(path.join(dir, file));
 
         if (stat.isDirectory()) {
-            _walks(path.join(dir, file), cb);
+            _walks(path.join(dir, file),ext, cb);
         }
 
-        if (!/\.js$/.test(file) || !stat.isFile()) {
+        if (! file.endsWith( ext) || !stat.isFile()) {
             return;
         }
 
@@ -21,7 +21,15 @@ function _walks(dir, cb) {
 
 }
 
-exports.walk_dir = _walks;
+exports.walk_js = function(dir, cb) {
+    _walks(dir, '.js', cb);
+}
+
+exports.walk = function(dir, find, cb) {
+    _walks(dir, find, cb);
+}
+
+
 
 /**
  * Process a directory and applies a callback for each file
@@ -35,7 +43,7 @@ exports.process_modules = function (dirname, cb) {
     return {
         init: function () {
             var save_args = arguments;
-            _walks(dirname, function (fn) {
+            exports.walk_js(dirname,   function (fn) {
                 var _args = _.map(save_args, function (arg) {
                     return arg;
                 });
